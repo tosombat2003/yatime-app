@@ -1,23 +1,31 @@
 # 💊 Yatime (ยาไทม์) - Medication Reminder App for the Elderly
-**Yatime** เป็นแอปพลิเคชันแจ้งเตือนการใช้ยาบนสมาร์ตโฟนที่ออกแบบมาเพื่อผู้สูงอายุโดยเฉพาะ มุ่งเน้นการแก้ปัญหาการลืมรับประทานยาและการไปพบแพทย์ไม่ตรงตามนัดหมาย ด้วยการออกแบบ UX/UI ที่เรียบง่าย อ่านง่าย พร้อมระบบเสียงอ่าน (TTS) และสถาปัตยกรรมแบบ **Offline-First** ที่ทำงานร่วมกับ API ของโรงพยาบาลได้อย่างไร้รอยต่อ
+![Yatime]<img width="500" height="500" alt="logo" src="https://github.com/user-attachments/assets/a0290dbe-516d-40ca-ac6c-95eeadf4e409" />
+
+>A medication reminder mobile application designed for elderly users, built as a senior project and submitted to the 14th Asia Undergraduate Conference on Computing (AUCC2026) — rated **Good**.
 
 ---
 
-## ✨ ฟีเจอร์หลัก (Key Features)
+## 📖 About 
 
-* **🔐 Easy Login:** เข้าสู่ระบบอย่างรวดเร็วและปลอดภัยด้วยบัญชี Google ผ่าน Firebase Authentication
-* **📱 Offline-First Support:** ใช้งานแอปและรับการแจ้งเตือนได้อย่างแม่นยำแม้ไม่มีการเชื่อมต่ออินเทอร์เน็ต (จัดเก็บข้อมูลลง SQLite)
-* **☁️ Cloud Synchronization:** ซิงโครไนซ์ข้อมูลขึ้น Firebase Cloud Firestore โดยอัตโนมัติเมื่อกลับมาออนไลน์ ด้วยกลไกแก้ปัญหาความขัดแย้งแบบ LWW (Last-Write-Wins)
+**Yatime** is a smartphone medication reminder application specifically designed for the elderly. It focuses on solving the issues of missed medications and medical appointments through a simple, highly readable UX/UI design. The app features a Text-to-Speech (TTS) system and an **Offline-First** architecture that seamlessly integrates with hospital APIs.
+
+---
+
+## ✨ Features
+
+* **🔐 Easy Login:** Fast and secure sign-in using Google accounts via Firebase Authentication.
+* **📱 Offline-First Support:** Fully functional app usage and reliable notifications even without an internet connection (local data storage via SQLite).
+* **☁️ Cloud Synchronization:** Automatically synchronizes data to Firebase Cloud Firestore when back online, utilizing a Last-Write-Wins (LWW) conflict resolution mechanism.
 * **⏰ Smart Medication Reminder:**
-  * แจ้งเตือนแบบเต็มหน้าจอ (Full-screen Notification) คล้ายนาฬิกาปลุก
-  * ระบบอ่านออกเสียง (Text-to-Speech) บอกชื่อยาและวิธีทาน
-  * ระบบเลื่อนแจ้งเตือน (Snooze 5 นาที) และแจ้งเตือนซ้ำ
-* **🏥 Appointment Reminder:** ระบบแจ้งเตือนวันนัดหมายแพทย์ 3 ระยะ (ล่วงหน้า 1 วัน, ล่วงหน้า 3 ชั่วโมง, และแจ้งเตือนติดตามผลช่วงเย็น)
-* **🔗 Hospital API Integration:** รองรับการดึงข้อมูลใบสั่งยาและตารางนัดหมายจากระบบของสถานพยาบาลโดยตรง
+  * Full-screen notifications similar to an alarm clock.
+  * Text-to-Speech (TTS) system announcing medication names and dosage instructions.
+  * 5-minute snooze and repeat notification features.
+* **🏥 Appointment Reminder:** Three-stage medical appointment notifications (1 day prior, 3 hours prior, and an evening follow-up reminder).
+* **🔗 Hospital API Integration:** Direct retrieval of prescription data and appointment schedules from healthcare facility systems.
 
 ---
 
-## 🛠️ เครื่องมือและเทคโนโลยี (Tech Stack)
+## 🛠️ Tech Stack
 
 ### Client (Mobile Application)
 * **Framework:** Flutter (Dart)
@@ -25,47 +33,59 @@
 
 ### Backend & Cloud Services
 * **Database (Cloud):** Firebase Cloud Firestore
-* **Authentication:** Firebase Authentication
+* **Authentication:** Firebase Authentication (Google)
 * **Hospital API:** Go (Golang) + Gin Framework
 * **API Testing:** Postman
 
 ---
 
-## 📂 โครงสร้างระบบ (System Architecture)
+## 📂 System Architecture
 
-แอปพลิเคชันถูกพัฒนาด้วยสถาปัตยกรรมแบบ **3-Tier Architecture**:
-1. **Client Tier:** ส่วนติดต่อผู้ใช้งาน พัฒนาด้วย Flutter รองรับการแสดงผลที่เหมาะสมกับผู้สูงอายุ
-2. **Application Tier:** ระบบจัดการ Logic การทำงาน ยืนยันตัวตน และเชื่อมต่อกับ Hospital API ที่พัฒนาด้วย Go
-3. **Database Tier:** ทำงานร่วมกันระหว่าง Local Database (SQLite) สำหรับการใช้งานออฟไลน์ และ Cloud Database (Firestore) สำหรับจัดเก็บข้อมูลส่วนกลาง
+The application is developed using a **3-Tier Architecture**:
+
+1. **Client Tier:** The user interface is developed with Flutter, featuring an optimized display tailored specifically for the elderly.
+2. **Application Tier:** Handles the core business logic, user authentication, and Hospital API integration, built with Go.
+3. **Database Tier:** Utilizes a hybrid approach combining a Local Database (SQLite) for offline capabilities and a Cloud Database (Firestore) for centralized data storage.
 
 ---
 
-## 🚀 วิธีการติดตั้งและรันโปรเจกต์ (Getting Started)
+## 🚀 Getting Started
+**Prerequisites**
+* Flutter SDK installed
+* Go installed (for running the mock API server)
+*  add your `google-services.json` (Android) or `GoogleService-Info.plist` (iOS) to the appropriate directory
 
-### ข้อกำหนดเบื้องต้น (Prerequisites)
-* ติดตั้ง Flutter SDK
-* ติดตั้ง Go (สำหรับรันเซิร์ฟเวอร์ API จำลอง)
-* *หมายเหตุ: โปรเจกต์นี้ได้แนบไฟล์ตั้งค่า `.env` และ Firebase Config (`google-services.json` / `GoogleService-Info.plist`) ไว้ให้เรียบร้อยแล้ว เพื่อความสะดวกในการรันทดสอบของคณะกรรมการ*
+### How to Run the Mobile App
 
-### วิธีรันแอปพลิเคชัน (Mobile App)
-1. ทำการแตกไฟล์ Zip โปรเจกต์ และเปิดโฟลเดอร์โปรเจกต์ด้วยโปรแกรม IDE (เช่น Visual Studio Code หรือ Android Studio)
-2. เปิด Terminal ในโฟลเดอร์โปรเจกต์ และติดตั้งแพ็กเกจที่จำเป็น:
-```bash
-cd Yatime application
-flutter pub get
-รันแอปพลิเคชัน:
-```bash
-flutter run
+1.Clone the repository
+   ```bash
+	git clone https://github.com/YOUR_USERNAME/yatime.git
+   ```
 
-3. วิธีรัน Hospital API (Backend)
-เข้าไปยังโฟลเดอร์ Hospital API:
-```bash
-cd Hospital API
+2.Open a terminal, navigate to the mobile app directory, and install the required packages:
+   ```bash 
+	cd yatime-app
+   	flutter pub get
+   ```
 
-4. โหลดโมดูล Go:
-```bash
-go mod tidy
+3.Run the application:
+   ```bash 
+	flutter run
+   ```	
 
-5.รันเซิร์ฟเวอร์:
-```bash
-go run cmd/main.go
+### How to Run the Hospital API (Backend)
+
+1.Open a new terminal and navigate to the Hospital API directory:
+   ```bash  
+	cd yatime-api
+   ```
+
+2.Download the required Go modules:
+   ```bash  
+	go mod tidy 
+   ```
+
+3.Run the server:
+   ```bash  
+	go run cmd/main.go 
+   ```
